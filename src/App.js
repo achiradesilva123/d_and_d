@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import {ThemeProvider} from "@mui/material/styles";
+import DefaultTheme from "./theme/DefaultTheme";
+import Routes from "./route/routes";
+import {BrowserRouter as Router} from 'react-router-dom';
+// import {useRoutes} from "react-router-dom"
+import Onboarding from "./page/Onbording/onboarding";
 
 function App() {
+
+  // const appRoutes = useRoutes(routes);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+          <ThemeProvider theme={DefaultTheme}>
+            <Routes/>
+          </ThemeProvider>
+      </Router>
   );
 }
 

@@ -18,6 +18,7 @@ import "../../assest/styles/onboarding.scss";
 import { getAuth, signInWithPopup, GoogleAuthProvider,signOut } from "firebase/auth";
 import {appIn} from "../../firebase/fiebase";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 //state
@@ -46,13 +47,13 @@ const theme = createTheme();
 export default function Onboarding() {
 
     const [user,setUser] = useState("");
+    const navigate = useNavigate();
 
     const signInWithGoogle = async () => {
         try {
-            const res = await signInWithPopup(auth, googleProvider).finally( () =>{
-                setUser(res?.user)
-            });
+            const res = await signInWithPopup(auth, googleProvider);
             const user = res?.user;
+            user && navigate('/chat');
         } catch (err) {
             console.error(err);
             alert(err.message);
